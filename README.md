@@ -4,4 +4,4 @@ This is a basic CRUD app with Vue.js 3 to manage notebooks about learning resour
 
 # Project Cover:
 
-![Project Cover](src/images/learning-resources-manager.png)
+![Project Cover](src/images/learning_resources_manager.png)
