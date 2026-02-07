@@ -1,14 +1,15 @@
+<script setup>
+defineProps({
+  type: String,
+  mode: String,
+});
+</script>
+
 <template>
   <button :class="mode">
     <slot></slot>
   </button>
 </template>
-
-<script>
-export default {
-  props: ['type', 'mode'],
-}
-</script>
 
 <style scoped>
 button {

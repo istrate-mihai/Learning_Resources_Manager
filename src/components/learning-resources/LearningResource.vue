@@ -1,9 +1,23 @@
+<script setup>
+import { inject } from 'vue';
+
+defineProps({
+  id: String,
+  title: String,
+  description: String,
+  link: String,
+  resourceKey: String,
+});
+
+const removeResource = inject('removeResource');
+</script>
+
 <template>
   <li>
     <base-card>
       <header>
         <h3>{{ title }}</h3>
-        <base-button mode="flat" @click="removeResource(id)">Delete</base-button>
+        <base-button mode="flat" @click="removeResource(resourceKey)">Delete</base-button>
       </header>
 
       <p>{{ description }}</p>
@@ -14,13 +28,6 @@
     </base-card>
   </li>
 </template>
-
-<script>
-  export default {
-    props: ['id', 'title', 'description', 'link'],
-    inject: ['removeResource'],
-  }
-</script>
 
 <style scoped>
 li {

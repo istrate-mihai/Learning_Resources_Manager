@@ -1,19 +1,14 @@
-<template>
-  <the-header title="Learning Resources Manager"></the-header>
-  <the-resources></the-resources>
-</template>
-
-<script>
+<script setup>
 import TheHeader from './components/layouts/TheHeader.vue';
 import TheResources from './components/learning-resources/TheResources.vue';
-
-export default {
-  components: {
-    TheHeader,
-    TheResources,
-  },
-};
 </script>
+
+<template>
+  <div>
+    <the-header title="Learning Resources Manager"></the-header>
+    <the-resources></the-resources>
+  </div>
+</template>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');

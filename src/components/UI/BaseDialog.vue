@@ -1,3 +1,15 @@
+<script setup>
+import { defineEmits } from 'vue';
+
+defineProps( {
+    title: {
+      type: String,
+      required: false,
+}});
+
+const emit = defineEmits(['close']);
+</script>
+
 <template>
   <teleport to="body">
     <div @click="$emit('close')"></div>
@@ -15,24 +27,12 @@
 
       <menu>
         <slot name="actions">
-          <base-button @click="$emit('close')">Close</base-button>
+          <base-button @click="emit('close')">Close</base-button>
         </slot>
       </menu>
     </dialog>
   </teleport>
 </template>
-
-<script>
-export default {
-  props: {
-    title: {
-      type: String,
-      required: false,
-    }
-  },
-  emits: ['close'],
-}
-</script>
 
 <style scoped>
 div {

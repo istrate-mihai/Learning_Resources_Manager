@@ -1,3 +1,34 @@
+<script setup>
+import { ref, inject } from 'vue';
+
+const addResource    = inject('addResource');
+const inputIsInvalid = ref(false);
+const titleInput     = ref(null);
+const descInput      = ref(null);
+const linkInput      = ref(null);
+
+function submitData() {
+  const enteredTitle       = titleInput.value?.value;
+  const enteredDescription = descInput.value?.value;
+  const enteredLink        = linkInput.value?.value;
+
+  if (enteredTitle.trim() == '' || enteredDescription.trim() == '' || enteredLink.trim() == '') {
+    inputIsInvalid.value = true;
+    return;
+  }
+
+  addResource(enteredTitle, enteredDescription, enteredLink);
+
+  titleInput.value.value = '';
+  descInput.value.value  = '';
+  linkInput.value.value  = '';
+}
+
+function confirmError() {
+  inputIsInvalid.value = false;
+}
+</script>
+
 <template>
   <base-dialog v-if="inputIsInvalid" title="Invalid Input" @close="confirmError">
     <template #default>
@@ -35,40 +66,6 @@
     </form>
   </base-card>
 </template>
-
-<script>
-export default {
-  inject: ['addResource'],
-  data() {
-    return {
-      inputIsInvalid: false,
-    }
-  },
-  methods: {
-    submitData() {
-      const enteredTitle       = this.$refs.titleInput.value;
-      const enteredDescription = this.$refs.descInput.value;
-      const enteredLink        = this.$refs.linkInput.value;
-
-      console.dir({
-        enteredTitle,
-        enteredDescription,
-        enteredLink
-      });
-
-      if (enteredTitle.trim() == '' || enteredDescription.trim() == '' || enteredLink.trim() == '') {
-        this.inputIsInvalid = true;
-        return;
-      }
-
-      this.addResource(enteredTitle, enteredDescription, enteredLink);
-    },
-    confirmError() {
-      this.inputIsInvalid = false;
-    }
-  }
-}
-</script>
 
 <style scoped>
 label {
